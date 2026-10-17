@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Little Creativity, A Little Chaos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --purple: #afa3e0;
+      --deep-purple: #62447d;
+      --lavender: #f2e9ff;
+      --pink: #ffe5f3;
+      --cream: #fffafc;
+      --shadow: 0 12px 35px rgba(113, 77, 145, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      font-family: "DM Sans", sans-serif;
+      color: var(--deep-purple);
+      background: var(--lavender);
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+
+    header {
+      position: relative;
+      z-index: 25;
+      min-height: 270px;
+      background-image:
+        linear-gradient(
+          rgba(245, 226, 255, 0.25),
+          rgba(245, 226, 255, 0.35)
+        ),
+        url("wallpaper.jpg");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 45px 30px 65px;
+      text-align: center;
+    }
+
+    .header-content {
+      position: relative;
+      width: min(100%, 1100px);
+      padding-left: 110px;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-family: "Quicksand", sans-serif;
+      font-size: clamp(20px, 2.5vw, 34px);
+      font-weight: 700;
+      line-height: 1.3;
+      color: #70468e;
+      margin: 0;
+      white-space: nowrap;
+      text-shadow: 2px 3px 8px white;
+      animation: fadeDown 1s ease both;
+    }
+
+    /* PROFILE PICTURE */
+
+    .profile-pic {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      left: max(7%, calc((100% - 1100px) / 2));
+      bottom: -110px;
+      border-radius: 50%;
+      border: 7px solid white;
+      object-fit: cover;
+      z-index: 50;
+      box-shadow: 0 12px 30px rgba(77, 37, 105, 0.25);
+      animation: profileFloat 5s ease-in-out infinite;
+    }
+
+    /* FLOATING DECORATIONS */
+
+    .decoration {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      color: #9366b9;
+      animation: floatAround 5s ease-in-out infinite;
+    }
+
+    .star-one {
+      top: 35px;
+      left: 15%;
+      font-size: 32px;
+    }
+
+    .star-two {
+      top: 50px;
+      right: 13%;
+      font-size: 28px;
+      animation-delay: 1s;
+    }
+
+    .heart-one {
+      bottom: 45px;
+      right: 20%;
+      font-size: 32px;
+      animation-delay: 2s;
+    }
+
+    .heart-two {
+      top: 120px;
+      right: 5%;
+      font-size: 26px;
+      animation-delay: 0.7s;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      min-height: 64px;
+      background: var(--purple);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      padding: 14px 20px 14px 150px;
+      box-shadow: 0 4px 15px rgba(89, 55, 127, 0.12);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      position: relative;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: white;
+      transition: width 0.3s;
+    }
+
+    nav a:hover {
+      color: #fff2fb;
+      transform: translateY(-3px);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* MAIN CONTENT */
+
+    main {
+      position: relative;
+      padding: 95px 20px 60px;
+      background-image: url("backdrop.jpg");
+      background-size: 500px auto;
+      background-repeat: repeat;
+    }
+
+    section {
+      position: relative;
+      max-width: 1000px;
+      margin: 35px auto;
+      padding: 35px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(190, 157, 222, 0.35);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.4s;
+    }
+
+    section:hover {
+      box-shadow: 0 18px 40px rgba(113, 77, 145, 0.18);
+    }
+
+    section h2 {
+      font-family: "Quicksand", sans-serif;
+      font-size: 30px;
+      color: #9866c2;
+      margin: 0 0 20px;
+    }
+
+    section p {
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .section-sticker {
+      position: absolute;
+      right: 30px;
+      top: -20px;
+      font-size: 35px;
+      color: #b58bd5;
+      animation: wiggle 4s ease-in-out infinite;
+    }
+
+    /* ABOUT ME */
+
+    .about-note {
+      background: linear-gradient(135deg, #fff0f8, #f4ebff);
+      padding: 25px;
+      border-radius: 18px;
+      border-left: 5px solid #c4a1e8;
+      margin-top: 20px;
+    }
+
+    .about-note h3 {
+      color: #8754b1;
+      font-family: "Quicksand", sans-serif;
+    }
+
+    /* HOBBIES */
+
+    .hobby-block {
+      margin: 30px 0;
+      padding: 25px;
+      background: #fcf7ff;
+      border-radius: 22px;
+      border: 1px solid #eadbf6;
+    }
+
+    .hobby-block h3 {
+      font-family: "Quicksand", sans-serif;
+      color: #8754b1;
+      font-size: 23px;
+      margin: 0 0 10px;
+    }
+
+    /* PHOTO GALLERIES */
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 25px;
+    }
+
+    .gallery-item {
+      background: white;
+      padding: 10px 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(98, 68, 125, 0.14);
+      transform: rotate(-2deg);
+      transition: transform 0.35s, box-shadow 0.35s;
+      position: relative;
+    }
+
+    .gallery-item:nth-child(even) {
+      transform: rotate(3deg);
+    }
+
+    .gallery-item:hover,
+    .gallery-item:nth-child(even):hover {
+      transform: rotate(0deg) translateY(-12px) scale(1.04);
+      box-shadow: 0 16px 30px rgba(98, 68, 125, 0.22);
+      z-index: 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 175px;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+      background: #f0e4fa;
+    }
+
+    .hobby-caption {
+      margin: 12px 4px 0;
+      font-size: 14px;
+      line-height: 1.5;
+      text-align: center;
+      color: #70468e;
+    }
+
+    .gallery-item::before {
+      content: "♡";
+      position: absolute;
+      top: -15px;
+      right: 8px;
+      font-size: 25px;
+      color: #d58ac2;
+    }
+
+    /* TECH STACK */
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 25px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: linear-gradient(135deg, #eedcff, #ffe8f4);
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: default;
+    }
+
+    .tag:hover {
+      transform: translateY(-7px) rotate(-3deg);
+      box-shadow: 0 8px 18px rgba(137, 93, 177, 0.2);
+    }
+
+    .learning-note {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 18px;
+      background: #f9efff;
+    }
+
+    .learning-note h3 {
+      color: #8754b1;
+      font-family: "Quicksand", sans-serif;
+    }
+
+    /* FOOTER */
+
+    footer {
+      position: relative;
+      text-align: center;
+      background: #d9b8ff;
+      padding: 45px 20px;
+      line-height: 1.8;
+    }
+
+    .footer-heart {
+      display: inline-block;
+      animation: heartbeat 2s infinite;
+    }
+
+    /* CLICK SPARKLES */
+
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 100;
+      animation: sparkleDisappear 1s ease-out forwards;
+      font-size: 18px;
+      color: #ad7bc7;
+    }
+
+    /* SCROLL REVEAL */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes floatAround {
+      0%, 100% {
+        transform: translateY(0) rotate(-8deg);
+      }
+
+      50% {
+        transform: translateY(-17px) rotate(12deg);
+      }
+    }
+
+    @keyframes profileFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes wiggle {
+      0%, 100% {
+        transform: rotate(-10deg);
+      }
+
+      50% {
+        transform: rotate(15deg);
+      }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.25);
+      }
+    }
+
+    @keyframes sparkleDisappear {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-45px) scale(0.3) rotate(90deg);
+      }
+    }
+
+    /* RESPONSIVE LAYOUT */
+
+    @media (max-width: 800px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .header-content {
+        padding-left: 0;
+      }
+
+      header h1 {
+        font-size: clamp(15px, 3.2vw, 25px);
+      }
+
+      .profile-pic {
+        width: 190px;
+        height: 190px;
+        bottom: -85px;
+      }
+
+      nav {
+        padding-left: 100px;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      header {
+        min-height: 270px;
+        padding: 30px 12px 75px;
+      }
+
+      header h1 {
+        font-size: clamp(12px, 3.3vw, 18px);
+        letter-spacing: -0.3px;
+      }
+
+      .profile-pic {
+        width: 150px;
+        height: 150px;
+        left: 7%;
+        bottom: -70px;
+        border-width: 5px;
+      }
+
+      nav {
+        justify-content: flex-end;
+        padding: 15px 12px 15px 130px;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      main {
+        padding: 85px 12px 35px;
+      }
+
+      section {
+        padding: 22px;
+      }
+
+      section h2 {
+        font-size: 25px;
+      }
+
+      .hobby-block {
+        padding: 15px;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .gallery-item img {
+        height: 130px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+    <span class="decoration star-one">✦</span>
+    <span class="decoration star-two">✧</span>
+    <span class="decoration heart-one">♡</span>
+    <span class="decoration heart-two">⋆</span>
+
+    <div class="header-content">
+      <h1>✧ A little creativity, a little chaos ✧</h1>
+    </div>
+
+    <img
+      src="dp.jpeg"
+      alt="My profile picture"
+      class="profile-pic"
+    >
+  </header>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <a href="#about">About Me</a>
+    <a href="#hobbies">Things I Love</a>
+    <a href="#tech">Tech Stack</a>
+  </nav>
+
+  <main>
+
+    <!-- ABOUT ME -->
+
+    <section id="about" class="reveal">
+      <span class="section-sticker">✿</span>
+
+      <h2>✿ A Little About Me</h2>
+
+      <p>
+        Hi! My name is Lipra Routray. I'm someone who loves creating things,
+        exploring new ideas, and finding beauty in the little things.
+      </p>
+
+      <div class="about-note">
+        <h3>✧ Get to know me better</h3>
+
+        <p>
+          I'm a Computer Science student with a
+          creative side. I enjoy learning new skills,
+          making things with my hands, and expressing
+          my personality through my interests.
+        </p>
+      </div>
+    </section>
+
+    <!-- THINGS I LOVE -->
+
+    <section id="hobbies" class="reveal">
+      <span class="section-sticker">♡</span>
+
+      <h2>♡ Things I Love</h2>
+
+      <!-- CLAY CREATIONS -->
+
+      <div class="hobby-block">
+        <h3>✦ Clay Creations</h3>
+
+        <p>
+          I was part of the clay modelling club in school, where we used to make small sculptures and display them at school exhibitions.
+          That’s where I first got interested in working with clay, and over time it turned into a hobby I genuinely enjoy.
+          Since then, I’ve been trying to improve my creations, experiment with different ideas,
+          and work with different types of clay to see what I can make with each one.
+        </p>
+
+        <div class="gallery">
+          <div class="gallery-item">
+            <img src="clay1.jpeg" alt="Clay creation 1">
+          </div>
+
+          <div class="gallery-item">
+            <img src="clay2.jpeg" alt="Clay creation 2">
+          </div>
+
+          <div class="gallery-item">
+            <img src="clay3.jpeg" alt="Clay creation 3">
+          </div>
+
+          <div class="gallery-item">
+            <img src="clay4.jpeg" alt="Clay creation 4">
+          </div>
+        </div>
+      </div>
+
+      <!-- MANICURES -->
+
+      <div class="hobby-block">
+        <h3>✧ Manicures</h3>
+
+        <p>
+          I've always loved the feeling of a fresh manicure!
+          I’m also really into general hand and nail care, so I don’t use extensions.
+          I actually love the challenge of making different styles work on my natural nails.
+        </p>
+
+        <p>
+          My favourite part? Watching the glitter catch
+          the light and shift between colours from
+          different angles. I could honestly stare
+          at them all day.
+        </p>
+
+        <p>
+          <em>A little sparkle never hurt anyone✨</em>
+        </p>
+
+        <div class="gallery">
+          <div class="gallery-item">
+            <img src="nail1.jpeg" alt="Nail art 1">
+          </div>
+
+          <div class="gallery-item">
+            <img src="nail2.jpeg" alt="Nail art 2">
+          </div>
+
+          <div class="gallery-item">
+            <img src="nail3.jpeg" alt="Nail art 3">
+          </div>
+
+          <div class="gallery-item">
+            <img src="nail4.jpeg" alt="Nail art 4">
+          </div>
+        </div>
+      </div>
+
+      <!-- PETS -->
+
+      <div class="hobby-block">
+        <h3>♡ My Pets</h3>
+
+        <p>
+          I had finches for a long time. They’re low-maintenance, cute little birds that sit on my shoulders while I work, and sometimes they also wear my work.
+        </p>
+
+        <div class="gallery">
+          <div class="gallery-item">
+            <img src="pet1.jpeg" alt="Pet 1">
+          </div>
+
+          <div class="gallery-item">
+            <img src="pet2.jpeg" alt="Pet 2">
+          </div>
+
+          <div class="gallery-item">
+        <img src="pet3.jpeg" alt="Pet 3">
+        </div>
+        </div>
+      </div>
+
+      <!-- OTHER HOBBIES -->
+
+      <div class="hobby-block">
+        <h3>❀ Other Hobbies</h3>
+
+        <p>
+          A few other things I enjoy spending my time on.
+        </p>
+
+        <div class="gallery">
+
+          <div class="gallery-item">
+            <img src="hobby1.jpeg" alt="Other hobby 1">
+            <p class="hobby-caption">
+              I'm a beach person, so naturally I hoard seashells. The ones that can be used usually end up in my craft archives.
+            </p>
+          </div>
+
+          <div class="gallery-item">
+            <img src="hobby2.jpeg" alt="Other hobby 2">
+            <p class="hobby-caption">
+              I recently started learning mehendi as a way to connect with the culture. Since I'm still a beginner, even a simple design takes me a long time, but I love seeing how it comes together in the end.
+            </p>
+          </div>
+
+          <div class="gallery-item">
+            <img src="hobby3.jpeg" alt="Other hobby 3">
+            <p class="hobby-caption">
+              This was a chart presentation we had to make in our first year for one of our subjects.
+            </p>
+          </div>
+
+          <div class="gallery-item">
+            <img src="hobby4.jpeg" alt="Other hobby 4">
+            <p class="hobby-caption">
+              I tried painting on paper, but it didn't work out quite the way I wanted, so I shifted to fabric instead.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TECH STACK -->
+
+    <section id="tech" class="reveal">
+      <span class="section-sticker">✧</span>
+
+      <h2>⌘ My Tech Stack</h2>
+
+      <p>
+        Technologies and tools I've worked with:
+      </p>
+
+      <div class="tags">
+        <span class="tag">Java</span>
+        <span class="tag">Python</span>
+        <span class="tag">C</span>
+        <span class="tag">C++</span>
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">Git</span>
+      </div>
+
+      <div class="learning-note">
+        <h3>⋆ What am I learning next?</h3>
+
+        <p>
+          I'm looking forward to improving my
+          development skills, building projects,
+          and growing as a software engineer.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <p>
+      Made with
+      <span class="footer-heart">♡</span>,
+      glitter, and a little bit of magic ✧
+    </p>
+
+    <p> 
+      Thank you for visiting my little corner
+      of the internet!
+    </p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+    // Reveal sections as they enter the viewport
+
+    const sections = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.08
+        }
+      );
+
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+    } else {
+      sections.forEach((section) => {
+        section.classList.add("visible");
+      });
+    }
+
+    // Unicode sparkles appear when the visitor clicks
+
+    const sparkleSymbols = ["✦", "✧", "⋆", "♡", "❀", "˚"];
+
+    document.addEventListener("click", (event) => {
+      if (
+        window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches
+      ) {
+        return;
+      }
+
+      for (let i = 0; i < 5; i++) {
+        const sparkle = document.createElement("span");
+
+        sparkle.className = "sparkle";
+
+        sparkle.textContent =
+          sparkleSymbols[
+            Math.floor(
+              Math.random() * sparkleSymbols.length
+            )
+          ];
+
+        const offsetX = (Math.random() - 0.5) * 70;
+        const offsetY = (Math.random() - 0.5) * 70;
+
+        sparkle.style.left =
+          event.clientX + offsetX + "px";
+
+        sparkle.style.top =
+          event.clientY + offsetY + "px";
+
+        document.body.appendChild(sparkle);
+
+        sparkle.addEventListener(
+          "animationend",
+          () => sparkle.remove(),
+          { once: true }
+        );
+      }
+    });
+  </script>
+
+</body>
+</html>
